@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <title>
+        My Website
+        </title>
+    </head> 
+    <body>
+    <h1>Hidden things by Venkat Sai Jarugula</h1>
+    <form>
+        <label for="form1_secret">Enter the secret word</label>
+        <input type ="password" id="form1_secret" name="form1_secret" value="Secret"> <br>
+    
+        <label for="form1_guess">Enter a guess</label>
+        <input type ="text" id="form1_guess" name="form1_guess" ><br> 
+        <input type="button" onclick="processGuess()" value="Check the guess">
+        
+    </form>
+    <p id="result">Enter the guess and check the result here</p>
+    
+    <script> 
+    var correct=0;
+    var wrong=0;
+    
+        function processGuess(){
+            console.log("Getting form values")
+            let secret=document.getElementById("form1_secret").value
+            let guess=document.getElementById("form1_guess").value
+            
+            
+            let out = document.getElementById("result")
+            if(secret==guess){
+               correct=correct+1;
+               alert("Congratulations");
+               out.innerHTML ="Correct Count = "+ correct
+            } else {
+                wrong=wrong+1;
+                alert("Sorry");
+                out.innerHTML = "Wrong Count = "+ wrong
+            }
+        }
+
+      
+        </script>
+    </body>
+</html> 
