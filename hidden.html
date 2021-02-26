@@ -17,10 +17,13 @@
         
     </form>
     <p id="result">Enter the guess and check the result here</p>
-    
+    <div>
+        <img src="jasminum.jpg"  id="rotateTheImage" alt="Unable to load the image" onclick="rotateImage()" width="200"  height="200">
+    </div>
     <script> 
     var correct=0;
     var wrong=0;
+    var currentImage=0;
     
         function processGuess(){
             console.log("Getting form values")
@@ -37,6 +40,23 @@
                 wrong=wrong+1;
                 alert("Sorry");
                 out.innerHTML = "Wrong Count = "+ wrong
+            }
+        }
+     
+  function rotateImage(){
+            switch(currentImage){
+                case 0:
+                   document.getElementById("rotateTheImage").src="jasminum.jpg";
+                    currentImage=1;
+                    break;
+                case 1:
+                    document.getElementById("rotateTheImage").src="abeliophyllum.jpg";
+                    currentImage=2;
+                    break;
+                case 2:
+                    document.getElementById("rotateTheImage").src="ugni.jpg";
+                    currentImage=0;
+                     break;
             }
         }
 
