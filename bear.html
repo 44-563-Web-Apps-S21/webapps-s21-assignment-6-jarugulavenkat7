@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+ <head>
+     <title>
+         Bear Page
+     </title>
+ </head>
+<body>
+
+<h2>Venkat Sai Jarugula builds a bear</h2>
+<form>
+    <input type="checkbox" id="form_hat" name="form_hat"   
+      value="hat">
+    <label for="form_hat">hat</label></br>
+  
+    <input type="checkbox" id="form_scarf" name="form_scarf" 
+       value="scarf">
+    <label for="form_scarf">scarf</label></br>
+  
+    <input type="checkbox" id="form_shirt" name="form_shirt"   
+       value="shirt" >
+    <label for="form_shirt">shirt</label></br>
+
+    <input type="button" onclick="startbear()" value="Start a bear">
+  </form>
+
+
+<p id="result">This text will be replaced </p>
+
+<form>
+    <label for="form1_property_name">Enter a property</label>
+    <input type ="text" id="form1_property_name" name="form1_property_name" value="color"> <br>
+
+    <label for="form1_property_value">Enter a value</label>
+    <input type ="text" id="form1_property_value" name="form1_property_value" ><br> 
+    <input type="button" onclick="updatebear()" value="Update the bear">
+    
+</form>
+<p id="updatedResult">This text will be replaced </p>
+<script> 
+    var my_bear={};
+    function startbear(){
+    hatBoolean = document.getElementById("form_hat").checked
+    my_bear.hat=hatBoolean;
+    scarfBoolean = document.getElementById("form_scarf").checked
+    my_bear.scarf=scarfBoolean;
+    shirtBoolean =  document.getElementById("form_shirt").checked
+    my_bear.shirt=shirtBoolean;    
+    var property, txt = "";
+    for (property in my_bear) {
+    txt += property+" : "+my_bear[property] + "    ";
+    };
+    document.getElementById("result").innerHTML = txt;
+    }
+    
+    function updatebear(){
+        propertyName=document.getElementById("form1_property_name").value
+        propertyValue=document.getElementById("form1_property_value").value
+        my_bear[propertyName] = propertyValue;
+        var property, txt = "";
+        for (property in my_bear) {
+            txt += property+" : "+my_bear[property] + "    ";
+        };
+        document.getElementById("updatedResult").innerHTML = txt;
+    }
+</script>
+</body>
+</html> 
