@@ -2,30 +2,48 @@
 <html>
     <head> 
         <title>
-        My Website
+            Hidden things page
         </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head> 
     <body>
-    <h1>Hidden things by Venkat Sai Jarugula</h1>
-    <form>
-        <label for="form1_secret">Enter the secret word</label>
-        <input type ="password" id="form1_secret" name="form1_secret" value="Secret"> <br>
-    
-        <label for="form1_guess">Enter a guess</label>
-        <input type ="text" id="form1_guess" name="form1_guess" ><br> 
-        <input type="button" onclick="processGuess()" value="Check the guess">
-        
-    </form>
-    <p id="result">Enter the guess and check the result here</p>
-    <div>
-        <img src="jasminum.jpg"  id="rotateTheImage" alt="Unable to load the image" onclick="rotateImage()" width="200"  height="200">
-    </div>
+        <div class="container alert alert-secondary">
+            <h1>Hidden things by Venkat Sai Jarugula</h1>
+            <div class="col-md-4"> 
+            <form>
+                <div class="form-group">
+                <label for="form1_secret">Enter the secret word</label>
+                <input class="form-control" type ="password" id="form1_secret" name="form1_secret" value="Secret"> 
+                </div>
+                <div class="form-group">
+                <label for="form1_guess">Enter a guess</label>
+                <input class="form-control" type ="text" id="form1_guess" name="form1_guess" >
+                </div>
+                <div class="form-group">
+                <input type="button" class="btn btn-outline-primary" onclick="processGuess()" value="Check the guess">
+                </div>
+            </form>
+            
+            <div id="result" class="alert alert-primary" role="alert">
+                Check the solution here  
+            </div>
+            
+        </div>
+            <div>
+                
+                <img src="jasminum.jpg" class="img-fluid rounded img-thumbnail" id="rotateTheImage" alt="Unable to load the image" onclick="rotateImage()" width="200"  height="200">
+            </div>
+        </div>
     <script> 
     var correct=0;
     var wrong=0;
     var currentImage=0;
-    
-        function processGuess(){
+    function processGuess(){
             console.log("Getting form values")
             let secret=document.getElementById("form1_secret").value
             let guess=document.getElementById("form1_guess").value
@@ -35,11 +53,11 @@
             if(secret==guess){
                correct=correct+1;
                alert("Congratulations");
-               out.innerHTML ="Correct Count = "+ correct
+               out.innerHTML = "<b>"+ "Correct = "+ correct+"  Wrong = "+ wrong+"</br>"
             } else {
                 wrong=wrong+1;
                 alert("Sorry");
-                out.innerHTML = "Wrong Count = "+ wrong
+                out.innerHTML = "<b>"+"Correct = "+ correct+"  Wrong = "+ wrong+"</br>"
             }
         }
      
@@ -59,8 +77,6 @@
                      break;
             }
         }
-
-      
         </script>
     </body>
 </html> 
