@@ -4,65 +4,102 @@
      <title>
          Bear Page
      </title>
+     <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  </head>
 <body>
 
-<h2>Venkat Sai Jarugula builds a bear</h2>
-<form>
-    <input type="checkbox" id="form_hat" name="form_hat"   
-      value="hat">
-    <label for="form_hat">hat</label></br>
+    <div class="container alert alert-warning">
+        <h2>Venkat Sai Jarugula builds a bear</h2>
+        <div class="col-md-4">
+         
+        <form>
+            <div class="form-check  form-check-inline ">
+            <input class="form-check-input" type="checkbox" id="form_hat" name="form_hat"   
+              value="hat" checked>
+            <label class="form-check-label" for="form_hat">hat</label>
+            </div>
+            <div class="form-check  form-check-inline ">
+            <input class="form-check-input" type="checkbox" id="form_scarf" name="form_scarf" 
+               value="scarf">
+            <label class="form-check-label" for="form_scarf">scarf</label>
+            </div>
+            <div class="form-check  form-check-inline">
+            <input class="form-check-input" type="checkbox" id="form_shirt" name="form_shirt"   
+               value="shirt" checked>
+            <label class="form-check-label" for="form_shirt">shirt</label></br>
+            </div>
+            <div class="form-group">
+            <input type="button" class="btn btn-outline-success" onclick="startbear()" value="Start a bear">
+            </div>
+          </form>
+        
+          <div id="result" class="alert alert-primary" role="alert">
+            Check the bear here  
+        </div>
+        
+                                                      
+        
+        <form>
+            <div class="form-group">
+            <label for="form1_property_name">Enter a property</label>
+            <input class="form-control" type ="text" id="form1_property_name" name="form1_property_name" value="color">
+            </div>
+            <div class="form-group">
+            <label for="form1_property_value">Enter a value</label>
+            <input class="form-control" type ="text" id="form1_property_value" name="form1_property_value">
+        </div>
+        <div class="form-group">
+            <input type="button" class="btn btn-outline-primary" onclick="updatebear()" value="Update the bear">
+        </div>
+        </form>
+        <div id="updatedResult" class="alert alert-primary" role="alert">
+            Check the upadated bear here   
+        </div>
+        
+        </div>
+        </div>
+        <script> 
+        var my_bear={};
+        
+        function startbear(){
+            console.log("Getting form values")
+            hatBoolean = document.getElementById("form_hat").checked
+            my_bear.hat=hatBoolean;
+            scarfBoolean = document.getElementById("form_scarf").checked
+            my_bear.scarf=scarfBoolean;
+            shirtBoolean =  document.getElementById("form_shirt").checked
+            my_bear.shirt=shirtBoolean;
   
-    <input type="checkbox" id="form_scarf" name="form_scarf" 
-       value="scarf">
-    <label for="form_scarf">scarf</label></br>
-  
-    <input type="checkbox" id="form_shirt" name="form_shirt"   
-       value="shirt" >
-    <label for="form_shirt">shirt</label></br>
-
-    <input type="button" onclick="startbear()" value="Start a bear">
-  </form>
-
-
-<p id="result">This text will be replaced </p>
-
-<form>
-    <label for="form1_property_name">Enter a property</label>
-    <input type ="text" id="form1_property_name" name="form1_property_name" value="color"> <br>
-
-    <label for="form1_property_value">Enter a value</label>
-    <input type ="text" id="form1_property_value" name="form1_property_value" ><br> 
-    <input type="button" onclick="updatebear()" value="Update the bear">
-    
-</form>
-<p id="updatedResult">This text will be replaced </p>
-<script> 
-    var my_bear={};
-    function startbear(){
-    hatBoolean = document.getElementById("form_hat").checked
-    my_bear.hat=hatBoolean;
-    scarfBoolean = document.getElementById("form_scarf").checked
-    my_bear.scarf=scarfBoolean;
-    shirtBoolean =  document.getElementById("form_shirt").checked
-    my_bear.shirt=shirtBoolean;    
-    var property, txt = "";
-    for (property in my_bear) {
-    txt += property+" : "+my_bear[property] + "    ";
-    };
-    document.getElementById("result").innerHTML = txt;
-    }
-    
-    function updatebear(){
-        propertyName=document.getElementById("form1_property_name").value
-        propertyValue=document.getElementById("form1_property_value").value
-        my_bear[propertyName] = propertyValue;
-        var property, txt = "";
+            var property, txt = "";
+        
+        
         for (property in my_bear) {
-            txt += property+" : "+my_bear[property] + "    ";
+        txt += property+" : "+my_bear[property] + "    ";
         };
+        
+        document.getElementById("result").innerHTML = txt;
+        
+        }
+        function updatebear(){
+            propertyName=document.getElementById("form1_property_name").value
+            propertyValue=document.getElementById("form1_property_value").value
+            my_bear[propertyName] = propertyValue;
+            var property, txt = "";
+        
+        
+        for (property in my_bear) {
+        txt += property+" : "+my_bear[property] + "  ";
+        };
+        
         document.getElementById("updatedResult").innerHTML = txt;
-    }
-</script>
-</body>
-</html> 
+        }
+        
+        </script>
+        
+        </body>
+        </html> 
