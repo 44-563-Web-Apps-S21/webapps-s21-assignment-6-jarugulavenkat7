@@ -4,69 +4,99 @@
      <title>
          Computers Page
      </title>
-    
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  </head>
 <body>
-<h2>Venkat Sai Jarugula computers</h2>
-<form>
-    <label for="first_value">Enter a number</label>
-    <input type ="number" id="first_value" name="first_value" value=10> <br>
+    <div class="container alert alert-success"  >
+        <h2>Venkat Sai Jarugula computers</h2>
+        <div class="col-md-4"> 
+        <form>
+            <div class="form-group">
+            <label for="first_value"><h5>Enter a number</h5></label>
+            <input class="form-control" type ="number" id="first_value" name="first_value" value=10> <br>
+            </div>
+            <div class="form-group">
+            <label for="second_value"><h5>Enter a number</h5></label>
+            <input class="form-control" type ="number" id="second_value" name="second_value" value=2> <br>
+            </div>
+            <input type="button" class="btn btn-outline-primary" onclick="permutations()" value="Compute">
+        </form>
 
-    <label for="second_value">Enter a number</label>
-    <input type ="number" id="second_value" name="second_value" value=2> <br>
+        <div id="compute" class="alert alert-primary" role="alert">
+            Check the solution here  
+        </div>
+   
+        <form>
+            <div class="form-check form-check-inline">
+            <input class="form-check-input"  type="radio" id="radio_plus" name="calculation" value="plus" onclick="processRadio()" >
+            <label class="form-check-label" for="radio_plus"><b>+</b></label></br>
+            </div>
+            <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="radio_minus" name="calculation" value="minus" onclick="processRadio()" >
+            <label class="form-check-label" for="radio_minus"><b>-</b></label></br>
+            </div>
+            <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="radio_times" name="calculation" value ="times" onclick="processRadio()" >
+            <label class="form-check-label" for="radio_times"><b>*</b></label></br>
+            </div>
+            <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="radio_divide" name="calculation" value="divide" onclick="processRadio()">
+            <label class="form-check-label" for="radio_divide"><b>/</b></label></br>
+            </div>
+        </form>
+     
+        <div id="calculation" class="alert alert-primary" role="alert">
+            Check the solution here 
+        </div>
+    </div>
+    
+    <script> 
+    
+    function permutations(){
+        console.log("Getting form values")
+        firstValue = document.getElementById("first_value").value
+        secondValue = document.getElementById("second_value").value
+        let product= 1;
+        for(i=firstValue;(firstValue-secondValue+1)<=i;i--){
+            product*=i;
+        }
 
-    <input type="button" onclick="permutations()" value="Compute">
-</form>
-<p id="compute">This text will be replaced </p>
-<form>
-    <input type="radio" id="radio_plus" name="calculation" value="plus" onclick="processRadio()">
-    <label for="radio_plus">+</label></br>
-  
-    <input type="radio" id="radio_minus" name="calculation" value="minus" onclick="processRadio()" >
-    <label for="radio_minus">-</label></br>
-  
-    <input type="radio" id="radio_times" name="calculation" value ="times" onclick="processRadio()" >
-    <label for="radio_times">*</label></br>
-
-    <input type="radio" id="radio_divide" name="calculation" value="divide" onclick="processRadio()">
-    <label for="radio_divide">/</label></br> 
-  </form>
-  <p id="calculation">This text will be replaced </p>
-<script> 
-function permutations(){
-    console.log("Getting form values")
-    firstValue = document.getElementById("first_value").value
-    secondValue = document.getElementById("second_value").value
-    let product= 1;
-    for(i=firstValue;(firstValue-secondValue+1)<=i;i--){
-        product*=i;
-    }    
-    out = document.getElementById("compute")    
-        out.innerHTML = firstValue+" permute "+  secondValue+" should be "+ product;  
-}
-function processRadio(){
-    firstValue = document.getElementById("first_value").value
-    secondValue = document.getElementById("second_value").value
-    plus =   document.getElementById("radio_plus").checked
-    minus =  document.getElementById("radio_minus").checked
-    times =  document.getElementById("radio_times").checked
-    divide = document.getElementById("radio_divide").checked
-    out = document.getElementById("calculation")
-    if(plus){
-        let sum = parseInt(firstValue)+parseInt(secondValue);
-        out.innerHTML = firstValue+" + " + secondValue+" = "+ (sum);
+        out = document.getElementById("compute")
+        
+            out.innerHTML = "<b>"+firstValue +"</b>"+" permute "+ "<b>"+ secondValue+"</b>"+" should be "+"<b>"+ product+"</b>";
+       
     }
-    else if(minus){
-        out.innerHTML = firstValue+" - "+  secondValue+" = "+ (firstValue-secondValue);
+    function processRadio(){
+        firstValue = document.getElementById("first_value").value
+        secondValue = document.getElementById("second_value").value
+        plus =   document.getElementById("radio_plus").checked
+        minus =  document.getElementById("radio_minus").checked
+        times =  document.getElementById("radio_times").checked
+        divide = document.getElementById("radio_divide").checked
+        out = document.getElementById("calculation")
+        if(plus){
+            let sum = parseInt(firstValue)+parseInt(secondValue);
+            
+            out.innerHTML = "<b>"+ firstValue +" + " + secondValue+" = "+ sum+"</b>";
+        }
+        else if(minus){
+            out.innerHTML = "<b>"+ firstValue +" - "+  secondValue+" = "+ (firstValue-secondValue)+"</b>";
+        }
+        else if(times)
+        {
+            out.innerHTML = "<b>"+ firstValue +" * "+  secondValue+" = "+ firstValue*secondValue+"</b>";
+        }
+        else {
+            out.innerHTML = "<b>"+ firstValue +" / "+  secondValue+" = "+ firstValue/secondValue+"</b>";
+        }
+    
     }
-    else if(times)
-    {
-        out.innerHTML = firstValue+" * "+  secondValue+" = "+ firstValue*secondValue;
-    }
-    else {
-        out.innerHTML = firstValue+" / "+  secondValue+" = "+ firstValue/secondValue;
-    }
-}
-</script>
-</body>
-</html> 
+    </script>
+    
+    </body>
+    </html> 
